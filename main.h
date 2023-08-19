@@ -55,5 +55,12 @@ int write_pointer(char buffer[], int ind, int length,
 		int width, int flags, char padd, char extra_c, int padd_start);
 int write_unsgnd(int is_negative, int ind,char buffer[],
 		int flags, int width, int precision, int size);
+int get_flags(const char *format, int *i);
+int get_width(const char *format, int *i, va_list my_list);
+int get_precision(const char *format, int *i, va_list my_list);
+int get_size(const char *format, int *i);
+int is_printable(char);
+int append_hexa_code(char, char[], int);
+int is_digit(char);
 
 #endif
