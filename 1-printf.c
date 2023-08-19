@@ -1,85 +1,47 @@
 #include "main.h"
+
 /**
- *print_int - prints integers
- *@my_list: all arguments
- *@buffer: array for print
- *@flags: calculates flags
- *@width: get width
- *@precision: for precision
- *@size: for size
+ *print_int - prints integer
+ *@format: format given
+ *@...: variable
  *Return: 0
  */
-int print_int(va_list my_list, char buffer[],
-		int flags, int width, int precision, int size)
+int print_int(const char *format, ...)
 {
-	int m = BUFF_SIZE - 2;
-	int is_negative = 0;
-	long int n = va_arg(my_list, long int);
-	unsigned long int val;
+	int n = 0;
+	va_list my_list;
 
-	n = convert_size_number(n, size);
+	if (format == NULL)
+		return (-1);
+	va_start(my_list, format);
 
-	if (n == 0)
-		buffer[m--] = '0';
-	buffer[BUFF_SIZE - 1] = '\0';
-	val = (unsigned long int)n;
-
-	if (n < 0)
+	while (*format)
 	{
-		val = (unsigned long int)((-1) * n);
-		is_negative = 1;
-	}
-	while (val > 0)
-	{
-		buffer[m--] = (val % 10) + '0';
-		val /= 10;
-	}
-	m++;
-	return (write_number(is_negative, m, buffer, flags, width,
-				precision, size));
-}
-/**
- *print_binary - prints i
- *@b_list: arguments
- *@buffer: an array
- *@flags: flags
- *@width: width
- *@precision: precision
- *@size: size
- *Return: 0
- */
-int print_binary(va_list b_list, char buffer[],
-	int flags, int width, int precision, int size)
-{
-	unsigned int z, b, c, sum;
-	unsigned int a[32];
-	int count;
-
-	UNUSED(buffer);
-	UNUSED(flags);
-	UNUSED(width);
-	UNUSED(precision);
-	UNUSED(size);
-
-	z = va_arg(b_list, unsigned int);
-	b = 2147483648;
-	a[0] = z / b;
-
-	for (c = 1; c < 32; c++)
-	{
-		b /= 2;
-		a[c] = (z / b) % 2;
-	}
-	for (c = 0, sum = 0, count = 0; c < 32; c++)
-	{
-		sum += a[c];
-		if (sum || c == 31)
+		if (*format != '%')
 		{
-			char y = '0' + a[c];
-
-			write(1, &y, 1);
-			count++;
+			write(1, format, 1);
+			n++;
 		}
+		else
+		{
+			format++;
+			if (*format == 'd')
+			{
+				int d = va_arg(my_list, int);
+
+				write(1, &d, 4);
+				n++;
+			}
+			else if (*format == 'i')
+			{
+				int i = va_arg(my_list, int);
+
+				write(1, &i, 4);
+				n++;
+			}
+		}
+		format++;
 	}
-	return (count);
+	va_end(my_list);
+	return (n);
 }
