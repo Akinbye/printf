@@ -1,20 +1,19 @@
 #include "main.h"
 
 /**
- *_printf - Handle the following conversion specifiers
- *@format: constant format given
- *@...: variables
+ *print_int - prints integer
+ *@format: format given
+ *@...: variable
  *Return: 0
  */
-int _printf(const char *format, ...)
+int print_int(const char *format, ...)
 {
 	int n = 0;
-
-	va_list all;
+	va_list my_list;
 
 	if (format == NULL)
 		return (-1);
-	va_start(all, format);
+	va_start(my_list, format);
 
 	while (*format)
 	{
@@ -28,14 +27,14 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == 'd')
 			{
-				int d = va_arg(all, int);
+				int d = va_arg(my_list, int);
 
 				write(1, &d, 4);
 				n++;
 			}
 			else if (*format == 'i')
 			{
-				int i = va_arg(all, int);
+				int i = va_arg(my_list, int);
 
 				write(1, &i, 4);
 				n++;
@@ -43,6 +42,6 @@ int _printf(const char *format, ...)
 		}
 		format++;
 	}
-	va_end(all);
+	va_end(my_list);
 	return (n);
 }
