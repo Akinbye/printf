@@ -22,7 +22,7 @@ int _printf(const char *format, ...)
 		{
 			_ptchar(format[i]);
 		}
-		else if (format[i] == '%' && format[i + 1] == 'c')
+		else if (format[i + 1] == 'c')
 		{
 			_ptchar(va_arg(other_args, int));
 			i++;
