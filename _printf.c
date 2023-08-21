@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 		{
 			_ptchar('%');
 		}
-		cnt++;
+		format++;
 	}
 	va_end(other_args);
 	return (cnt);
