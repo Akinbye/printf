@@ -42,14 +42,11 @@ int printf_int(const char *format, ...)
 		if (format[n] == '%')
 		{
 			format++;
-			if (format[n] == 'd' || format[n] == 'i')
-			{
-				handle_conversion(*format, my_list);
-				n++;
-			}
-			else
-				_ptchar(*format);
+			handle_conversion(*format, my_list);
+			n++;
 		}
+		else
+			_ptchar(*format);
 		format++;
 	}
 	va_end(my_list);
