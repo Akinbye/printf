@@ -19,9 +19,7 @@ int _printf(const char *format, ...)
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
-		{
 			_ptchar(format[i]);
-		}
 		else if (format[i + 1] == '%')
 		{
 			_ptchar('%');
