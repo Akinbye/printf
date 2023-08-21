@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 
 	va_list other_args;
 
-	if (!format || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL)
 		return (-1);
 
 	va_start(other_args, format);
@@ -38,6 +38,7 @@ int _printf(const char *format, ...)
 			i++;
 			cnt += strcnt;
 		}
+		cnt++;
 	}
 	va_end(other_args);
 	return (cnt);
