@@ -25,20 +25,17 @@ int _printf(const char *format, ...)
 		else if (format[i + 1] == '%')
 		{
 			_ptchar('%');
-			i++;
 		}
 		else if (format[i + 1] == 'c')
 		{
 			_ptchar(va_arg(other_args, int));
-			i++;
 		}
-		cnt++;
-		if (format[i + 1] == 's')
+		else if (format[i + 1] == 's')
 		{
 			strcnt = put_s(va_arg(other_args, char *));
-			i++;
 			cnt += strcnt;
 		}
+		cnt++;
 	}
 	va_end(other_args);
 	return (cnt);
