@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 void print_buffer(char buffer[], int *buff_ind);
-void handle_conversion(char specifier, va_list my_list);
+void handle_conversion(int value);
 int _ptchar(char c);
 int _printf(const char *format, ...);
 int put_s(char *c);

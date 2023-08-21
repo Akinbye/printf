@@ -1,41 +1,33 @@
 #include "main.h"
-#include <stdio.h>
 
-void handle_conversion(char specifier, va_list my_list);
-void print_buffer(char buffer[], int *buff_ind);
-
-/**
- *print_buffer - prints buffer
- *@buffer: buffer to be printed
- *@buff_ind: integer
- */
-void print_buffer(char buffer[], int *buff_ind)
-{
-	if (*buff_ind > 0)
-		write(1, &buffer[0], *buff_ind);
-	*buff_ind = 0;
-}
+void handle_conversion(int value);
 
 /**
  *handle_conversion - handles conversion
- *@specifier: specifier
- *@my_list: argument list
+ *@value: argument list
  *Return: number of argument
  */
 
-void handle_conversion(char specifier, va_list my_list)
+void handle_conversion(int value)
 {
+	int index, num_digits = 0;
+	char buffer[12];
 
-	if (specifier == 'd' || specifier == 'i')
+	if (value < 0)
 	{
-		int buff_ind = 0;
-		char c = va_arg(my_list, int);
-		char buffer[12];
-		int size = sprintf(buffer, &c, buff_ind);
-
-		_ptchar(*buffer);
-		_ptchar(size);
+		buffer[0] = '-';
+		value = -value;
 	}
+	index = num_digits + (value < 0 ? 1 : 0);
+	buffer[index] = '\0';
+
+	while (value > 0)
+	{
+		index--;
+		buffer[index] = '0' + (value % 10);
+		value /= 10;
+	}
+	_ptchar(*(&buffer[index]));
 }
 
 /**
@@ -53,16 +45,21 @@ int printf_int(const char *format, ...)
 
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format != '%')
 		{
-			format++;
-			handle_conversion(*format, my_list);
+			_ptchar(*format);
 			count++;
 		}
 		else
 		{
-			_ptchar(*format);
-			count++;
+			format++;
+			if (*format == 'd' || *format == 'i')
+			{
+				int value = va_arg(my_list, int);
+
+				handle_conversion(value);
+				count++;
+			}
 		}
 		format++;
 	}
