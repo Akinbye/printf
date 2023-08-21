@@ -44,7 +44,7 @@ void handle_conversion(char specifier, va_list my_list)
 
 int printf_int(const char *format, ...)
 {
-	int n;
+	int n, count = 0;
 	va_list my_list;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
@@ -58,11 +58,15 @@ int printf_int(const char *format, ...)
 			format++;
 			handle_conversion(*format, my_list);
 			n++;
+			count++;
 		}
 		else
+		{
 			_ptchar(*format);
+			count++;
+		}
 		format++;
 	}
 	va_end(my_list);
-	return (n);
+	return (count);
 }
