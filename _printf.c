@@ -38,7 +38,6 @@ int _printf(const char *format, ...)
 			i++;
 			cnt += strcnt;
 		}
-		cnt++;
 	}
 	va_end(other_args);
 	return (cnt);
