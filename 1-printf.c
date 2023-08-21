@@ -10,12 +10,14 @@ void handle_conversion(const char *format, va_list my_list);
 void handle_conversion(const char *format, va_list my_list)
 {
 	int numbers = va_arg(my_list, int);
-	write(1, &numbers, 1);
+	write(1, &numbers, sizeof(int));
 	format++;
+
 }
 
 int printf_int(const char *format, ...)
 {
+	int n = 0;
 	va_list my_list;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
@@ -24,11 +26,14 @@ int printf_int(const char *format, ...)
 
 	while (*format)
 	{
-		if (*format == '%')
+		if (format[n] == '%')
 		{
 			format++;
-			if (*format == 'd' || *format == 'i')
+			if (format[n + 1] == 'd' || format[n + 1] == 'i')
+			{
 				handle_conversion(format, my_list);
+				n++;
+			}
 			else
 				_ptchar(*format);
 		}
