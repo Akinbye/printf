@@ -2,6 +2,20 @@
 #include <stdio.h>
 
 void handle_conversion(char specifier, va_list my_list);
+void print_buffer(char buffer[], int *buff_ind);
+
+/**
+ *print_buffer - prints buffer
+ *@buffer: buffer to be printed
+ *@buff_ind: integer
+ */
+void print_buffer(char buffer[], int *buff_ind)
+{
+	if (*buff_ind > 0)
+		write(1, &buffer[0], *buff_ind);
+	*buff_ind = 0;
+}
+
 /**
  *handle_conversion - handles conversion
  *@specifier: specifier
@@ -14,7 +28,7 @@ void handle_conversion(char specifier, va_list my_list)
 	if (specifier == 'd' || specifier == 'i')
 	{
 		int number = va_arg(my_list, int);
-		char buffer[10];
+		char buffer[12];
 		int size = sprintf(buffer, "%d", number);
 
 		_ptchar(*buffer);
@@ -30,7 +44,7 @@ void handle_conversion(char specifier, va_list my_list)
 
 int printf_int(const char *format, ...)
 {
-	int n = 0;
+	int n;
 	va_list my_list;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))

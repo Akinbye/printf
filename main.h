@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+void print_buffer(char buffer[], int *buff_ind);
 void handle_conversion(char specifier, va_list my_list);
 int _ptchar(char c);
 int _printf(const char *format, ...);
