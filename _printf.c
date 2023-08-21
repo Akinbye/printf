@@ -22,20 +22,24 @@ int _printf(const char *format, ...)
 		{
 			_ptchar(format[i]);
 		}
-		else if (format[i + 1] == 'c')
+		else
 		{
-			_ptchar(va_arg(other_args, int));
-			i++;
-		}
-		else if (format[i + 1] == 's')
-		{
-			strcnt = put_s(va_arg(other_args, char *));
-			i++;
-			cnt += (strcnt - 1);
-		}
-		else if (format[i + 1] == '%')
-		{
-			_ptchar('%');
+			format++;
+			if (format[i] == '%')
+			{
+				_ptchar(*format);
+			}
+			else if (format[i + 1] == 'c')
+			{
+				_ptchar(va_arg(other_args, int));
+				cnt++;
+			}
+			else if (format[i + 1] == 's')
+			{
+				strcnt = put_s(va_arg(other_args, char *));
+				i++;
+				cnt += strcnt;
+			}
 		}
 		format++;
 	}
