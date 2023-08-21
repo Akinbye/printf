@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-	size_t i, strcnt, cnt = 0;
+	int i, strcnt, cnt = 0;
 
 	va_list other_args;
 

@@ -3,8 +3,9 @@
 
 void handle_conversion(char specifier, va_list my_list);
 /**
- *printf_int - prints integer
- *@format: format specifier
+ *handle_conversion - handles conversion
+ *@specifier: specifier
+ *@my_list: argument list
  *Return: number of argument
  */
 
@@ -15,10 +16,17 @@ void handle_conversion(char specifier, va_list my_list)
 		int number = va_arg(my_list, int);
 		char buffer[10];
 		int size = sprintf(buffer, "%d", number);
+
 		_ptchar(*buffer);
 		size++;
 	}
 }
+
+/**
+ *printf_int - prints integer
+ *@format: format specifier
+ *Return: 0
+ */
 
 int printf_int(const char *format, ...)
 {
@@ -34,7 +42,7 @@ int printf_int(const char *format, ...)
 		if (format[n] == '%')
 		{
 			format++;
-			if (format[n + 1] == 'd' || format[n + 1] == 'i')
+			if (format[n] == 'd' || format[n] == 'i')
 			{
 				handle_conversion(*format, my_list);
 				n++;
