@@ -25,7 +25,6 @@ int _printf(const char *format, ...)
 		else if (format[i + 1] == '%')
 		{
 			_ptchar('%');
-			i++;
 		}
 		else if (format[i + 1] == 'c')
 		{
@@ -36,7 +35,7 @@ int _printf(const char *format, ...)
 		{
 			strcnt = put_s(va_arg(other_args, char *));
 			i++;
-			cnt += strcnt;
+			cnt += (strcnt - 1);
 		}
 		cnt++;
 	}
