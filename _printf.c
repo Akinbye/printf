@@ -23,12 +23,12 @@ int _printf(const char *format, ...)
 		else if (format[i + 1] == '%')
 		{
 			_ptchar('%');
-			i++;
+			cnt++;
 		}
 		else if (format[i + 1] == 'c')
 		{
 			_ptchar(va_arg(other_args, int));
-			i++;
+			cnt++;
 		}
 		else if (format[i + 1] == 's')
 		{
