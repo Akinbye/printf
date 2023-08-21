@@ -25,14 +25,15 @@ void print_buffer(char buffer[], int *buff_ind)
 
 void handle_conversion(char specifier, va_list my_list)
 {
+
 	if (specifier == 'd' || specifier == 'i')
 	{
-		int number = va_arg(my_list, int);
+		int buff_ind = 0;
+		char c = va_arg(my_list, int);
 		char buffer[12];
-		int size = sprintf(buffer, "%d", number);
+		int size = sprintf(buffer, &c, buff_ind);
 
-		_ptchar(*buffer);
-		size++;
+		_ptchar(size);
 	}
 }
 
