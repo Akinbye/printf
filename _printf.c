@@ -21,6 +21,7 @@ int _printf(const char *format, ...)
 		if (format[i] != '%')
 		{
 			_ptchar(format[i]);
+			i++;
 		}
 		else if (format[i + 1] == '%')
 		{
