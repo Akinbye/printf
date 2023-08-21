@@ -19,16 +19,18 @@ int _printf(const char *format, ...)
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
+		{
 			_ptchar(format[i]);
+		}
 		else if (format[i + 1] == '%')
 		{
 			_ptchar('%');
-			cnt++;
+			i++;
 		}
 		else if (format[i + 1] == 'c')
 		{
 			_ptchar(va_arg(other_args, int));
-			cnt++;
+			i++;
 		}
 		else if (format[i + 1] == 's')
 		{
