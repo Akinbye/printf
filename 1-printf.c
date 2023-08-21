@@ -33,6 +33,7 @@ void handle_conversion(char specifier, va_list my_list)
 		char buffer[12];
 		int size = sprintf(buffer, &c, buff_ind);
 
+		_ptchar(*buffer);
 		_ptchar(size);
 	}
 }
@@ -45,20 +46,17 @@ void handle_conversion(char specifier, va_list my_list)
 
 int printf_int(const char *format, ...)
 {
-	int n, count = 0;
+	int count = 0;
 	va_list my_list;
 
-	if (!format || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
 	va_start(my_list, format);
 
-	for (n = 0; format[n] != '\0'; n++)
+	while (*format)
 	{
-		if (format[n] == '%')
+		if (*format == '%')
 		{
 			format++;
 			handle_conversion(*format, my_list);
-			n++;
 			count++;
 		}
 		else
