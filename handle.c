@@ -43,9 +43,9 @@ int handle_p(const char *format, int *ind, va_list my_list,
 			--(*ind);
 
 			while (format[*ind] != ' ' && format[*ind] != '%')
-					--(*ind);
+				--(*ind);
 			if (format[*ind] == ' ')
-			--(*ind);
+				--(*ind);
 			return (1);
 		}
 		len += write(1, &format[*ind], 1);
