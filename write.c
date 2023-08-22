@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * handle_write_char - Prints a string
+ * handle_w - Prints a string
  * @c: char types.
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags.
@@ -10,7 +10,7 @@
  *
  * Return: Number of chars printed.
  */
-int handle_write_char(char c, char buffer[],
+int handle_w(char c, char buffer[],
 	int flags, int width, int precision, int size)
 { /* char is stored at left and paddind at buffer's right */
 	int i = 0;
@@ -43,7 +43,7 @@ int handle_write_char(char c, char buffer[],
 }
 
 /**
- * write_number - Prints a string
+ * write_n - Prints a string
  * @is_negative: Lista of arguments
  * @ind: char types.
  * @buffer: Buffer array to handle print
@@ -54,7 +54,7 @@ int handle_write_char(char c, char buffer[],
  *
  * Return: Number of chars printed.
  */
-int write_number(int is_negative, int ind, char buffer[],
+int write_n(int is_negative, int ind, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int length = BUFF_SIZE - ind - 1;
@@ -135,7 +135,7 @@ int write_num(int ind, char buffer[],
 }
 
 /**
- * write_unsgnd - Writes an unsigned number
+ * write_un - Writes an unsigned number
  * @is_negative: Number indicating if the num is negative
  * @ind: Index at which the number starts in the buffer
  * @buffer: Array of chars
@@ -146,7 +146,7 @@ int write_num(int ind, char buffer[],
  *
  * Return: Number of written chars.
  */
-int write_unsgnd(int is_negative, int ind,
+int write_un(int is_negative, int ind,
 	char buffer[],
 	int flags, int width, int precision, int size)
 {
@@ -193,7 +193,7 @@ int write_unsgnd(int is_negative, int ind,
 }
 
 /**
- * write_pointer - Write a memory address
+ * write_p - Write a memory address
  * @buffer: Arrays of chars
  * @ind: Index at which the number starts in the buffer
  * @length: Length of number
@@ -205,7 +205,7 @@ int write_unsgnd(int is_negative, int ind,
  *
  * Return: Number of written chars.
  */
-int write_pointer(char buffer[], int ind, int length,
+int write_p(char buffer[], int ind, int length,
 	int width, int flags, char padd, char extra_c, int padd_start)
 {
 	int i;

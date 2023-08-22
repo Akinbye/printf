@@ -1,5 +1,7 @@
 #include "main.h"
 
+void print_buff(char buffer[], int *buff_ind);
+
 /**
  *_printf - prints formatted text to the stdoutput
  *@format: the first argument in the function
@@ -7,36 +9,41 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, strcnt, cnt = 0;
+	int i, strcnt = 0, cnt = 0;
 
-	va_list other_args;
+	int flags, width, precision, size, buff_ind = 0;
+	va_list my_list;
+	char buffer[BUFF_SIZE];
 
-	if (!format || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL)
 		return (-1);
 
-	va_start(other_args, format);
+	va_start(my_list, format);
 
-	for (i = 0; format[i] != '\0'; i++)
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
-			_ptchar(format[i]);
+			buffer[buff_ind++] = format[i];
+			if (buff_ind == BUFF_SIZE)
+				print_buff(buffer, &buff_ind);
+			cnt++;
 		}
-		else if (format[i + 1] == '%')
+		else
 		{
-			_ptchar('%');
+			print_buff(buffer, &buff_ind);
+			flags = get_flags(format, &i);
+			width = get_width(format, &i, my_list);
+			precision = get_precision(format, &i, my_list);
+			size = get_size(format, &i);
+			++i;
+			strcnt = handle_p(format, &i, my_list, buffer,
+					flags, width, precision, size);
+			if (strcnt == -1)
+				return (-1);
+			cnt += strcnt;
 		}
-		else if (format[i + 1] == 'c')
-		{
-			_ptchar(va_arg(other_args, int));
-			i++;
-		}
-		else if (format[i + 1] == 's')
-		{
-			strcnt = put_s(va_arg(other_args, char *));
-			i++;
-			cnt += (strcnt - 1);
-		}
+<<<<<<< HEAD
 		else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		{
 			i++;
@@ -44,7 +51,22 @@ int _printf(const char *format, ...)
 			_ptchar(cnter);
 		}
 		cnt++;
+=======
+>>>>>>> 09fb839ea15e11d97523f45ff6207d68e6b0db8d
 	}
-	va_end(other_args);
+	print_buff(buffer, &buff_ind);
+	va_end(my_list);
 	return (cnt);
+}
+
+/**
+ *print_buff - prints buffer
+ *@buffer: buffer array
+ *@buff_ind: index
+ */
+void print_buff(char buffer[], int *buff_ind)
+{
+	if (*buff_ind > 0)
+		write(1, &buffer[0], *buff_ind);
+	*buff_ind = 0;
 }
