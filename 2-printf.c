@@ -9,7 +9,8 @@
  *@size: specifies the size
  *Return: Returns the number of character printed
  */
-int print_p(va_list my_arg, char buffer[], int flags, int width, int precision, int size)
+int print_p(va_list my_arg, char buffer[], int flags,
+		int width, int precision, int size)
 {
 	char xc = 0, pd = ' ';
 	int ind = BUFF_size - 2, length = 2, pd_start = 1;
@@ -39,7 +40,7 @@ int print_p(va_list my_arg, char buffer[], int flags, int width, int precision, 
 		xc = ' ', length++;
 
 	ind++;
-	return (write_p(buffer, ind, length, width, flags, pd, xc,pd_start));
+	return (write_p(buffer, ind, length, width, flags, pd, xc, pd_start));
 }
 
 /**
@@ -50,9 +51,10 @@ int print_p(va_list my_arg, char buffer[], int flags, int width, int precision, 
  *@width: gets the width
  *@precision: specifies precision
  *@size: specifies size
- *@Return: Returns the number of charcter printed
+ *Return: Returns the number of charcter printed
  */
-int print_non(va_list my arg, char *buffer, int flags, int width, int precision, int size)
+int print_non(va_list my_arg, char *buffer, int flags,
+	int width, int precision, int size)
 {
 	int l = 0, offset = 0;
 	char *string = va_arg(my_arg, char *);
@@ -84,8 +86,10 @@ int print_non(va_list my arg, char *buffer, int flags, int width, int precision,
  *@width: gets the width
  *@precision: specifies precision
  *@size: specifies the size
+ *Return: Returns count
  */
-int print_r(va_list my_arg, char buffer[], int flags, int width, int precision, int size)
+int print_r(va_list my_arg, char buffer[], int flags,
+		int width, int precision, int size)
 {
 	char *string;
 	int l, cnt = 0;
@@ -122,12 +126,16 @@ int print_r(va_list my_arg, char buffer[], int flags, int width, int precision, 
  *@width: takes care of the width
  *@precision: precision specifier
  *@size: size specifier
+ *Return: Returns count
  */
-int print_rot(va_list my_arg, char buffer[], int flags,int width, int precision, int size)
+int print_rot(va_list my_arg, char buffer[], int flags,
+		int width, int precision, int size)
 {
 	char x;
 	char *string;
-	unsigned int 1,j;
+
+	unsigned int 1, j;
+
 	int cnt = 0;
 	char norm[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char rev[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
@@ -162,5 +170,3 @@ int print_rot(va_list my_arg, char buffer[], int flags,int width, int precision,
 	}
 	return (cnt);
 }
- 
-
