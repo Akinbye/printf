@@ -1,5 +1,7 @@
 #include "main.h"
 
+int _printf(const char *format, ...);
+
 /**
  *print_c - prints character
  *@my_arg: arguments
