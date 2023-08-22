@@ -28,13 +28,15 @@ void handle_conversion(char specifier, va_list my_list)
 
 	if (specifier == 'd' || specifier == 'i')
 	{
-		int buff_ind = 0;
-		char c = va_arg(my_list, int);
+		int i;
+		int num = va_arg(my_list, int);
 		char buffer[12];
-		int size = sprintf(buffer, &c, buff_ind);
+		int size = sprintf(buffer, "%d", num);
 
-		_ptchar(*buffer);
-		_ptchar(size);
+		for (i = 0; i < size; i++)
+		{
+			_ptchar(buffer[i]);
+		}
 	}
 }
 
