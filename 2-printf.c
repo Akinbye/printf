@@ -13,9 +13,9 @@ int print_p(va_list my_arg, char buffer[], int flags,
 		int width, int precision, int size)
 {
 	char xc = 0, pd = ' ';
-	int ind = BUFF_size - 2, length = 2, pd_start = 1;
+	int ind = BUFF_SIZE - 2, length = 2, pd_start = 1;
 	unsigned long num_ad;
-	char to[] = '0123456789abcdef';
+	char to[] = "0123456789abcdef";
 	void *adr = va_arg(my_arg, void *);
 
 	UNUSED(width);
@@ -24,7 +24,7 @@ int print_p(va_list my_arg, char buffer[], int flags,
 		return (write(1, "(nil)", 5));
 	buffer[BUFF_SIZE - 1] = '\0';
 	UNUSED(precision);
-	num_ad = (unsigned long)adr;
+	num_ad = (unsigned long) adr;
 
 	while (num_ad > 0)
 	{
@@ -53,7 +53,7 @@ int print_p(va_list my_arg, char buffer[], int flags,
  *@size: specifies size
  *Return: Returns the number of charcter printed
  */
-int print_non(va_list my_arg, char *buffer, int flags,
+int print_non(va_list my_arg, char buffer[], int flags,
 	int width, int precision, int size)
 {
 	int l = 0, offset = 0;
@@ -69,7 +69,7 @@ int print_non(va_list my_arg, char *buffer, int flags,
 	while (string[l] != '\0')
 	{
 		if (printable(string[l]))
-			buffer[l + offset] = str[l];
+			buffer[l + offset] = string[l];
 		else
 			offset += append(string[l], buffer, l + offset);
 		l++;
@@ -104,13 +104,13 @@ int print_r(va_list my_arg, char buffer[], int flags,
 	if (string == NULL)
 	{
 		UNUSED(precision);
-		string = "(Null)";
+		string = ")Null(";
 	}
 	for (l = 0; string[l]; l++)
 		;
 	for (l = l - 1; l >= 0; l--)
 	{
-		char x = string[i];
+		char x = string[l];
 
 		write(1, &x, 1);
 		cnt++;
@@ -134,7 +134,7 @@ int print_rot(va_list my_arg, char buffer[], int flags,
 	char x;
 	char *string;
 
-	unsigned int 1, j;
+	unsigned int l, j;
 
 	int cnt = 0;
 	char norm[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
