@@ -78,5 +78,6 @@ int append(char, char[], int);
 int is_digit(char);
 long int convert_s(long int number, int size);
 long int convert_u(unsigned long int number, int size);
+int _putchar(char c);
 
 #endif /* MAIN_H */
