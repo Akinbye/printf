@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  *print_c - prints character
  *@my_arg: arguments
@@ -109,19 +110,6 @@ int print_i(va_list my_arg, char buffer[],
 	long int m = va_arg(my_arg, long int);
 	unsigned long int number;
 
-<<<<<<< HEAD
-	if (specifier == 'd' || specifier == 'i')
-	{
-		int i;
-		int num = va_arg(my_list, int);
-		char buffer[12];
-		int size = sprintf(buffer, "%d", num);
-
-		for (i = 0; i < size; i++)
-		{
-			_ptchar(buffer[i]);
-		}
-=======
 	m = convert_s(m, size);
 
 	if (m == 0)
@@ -138,7 +126,6 @@ int print_i(va_list my_arg, char buffer[],
 	{
 		buffer[i--] = (number % 10) + '0';
 		number /= 10;
->>>>>>> 09fb839ea15e11d97523f45ff6207d68e6b0db8d
 	}
 	i++;
 	return (write_n(negative, i, buffer, flags, width,

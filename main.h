@@ -53,6 +53,8 @@ int print_x(va_list my_arg, char buffer[],
 	int flags, int width, int precision, int size);
 int print_X(va_list my_arg, char buffer[],
 	int flags, int width, int precision, int size);
+int print_hex(va_list my_arg, char check[], char buffer[],
+	int flags, char flag_s, int width, int precision, int size);
 int print_p(va_list my_arg, char buffer[],
 	int flags, int width, int precision, int size);
 int print_non(va_list my_arg, char buffer[],

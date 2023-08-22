@@ -43,16 +43,6 @@ int _printf(const char *format, ...)
 				return (-1);
 			cnt += strcnt;
 		}
-<<<<<<< HEAD
-		else if (format[i + 1] == 'd' || format[i + 1] == 'i')
-		{
-			i++;
-			int cnter = va_arg(other_args, int);
-			_ptchar(cnter);
-		}
-		cnt++;
-=======
->>>>>>> 09fb839ea15e11d97523f45ff6207d68e6b0db8d
 	}
 	print_buff(buffer, &buff_ind);
 	va_end(my_list);
