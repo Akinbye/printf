@@ -18,6 +18,11 @@
 #define S_LONG 2
 #define S_SHORT 1
 
+/**
+ *struct format - struct op
+ *@format: format used
+ *@fn: function
+ */
 struct format
 {
 	char format;
@@ -72,7 +77,7 @@ int write_num(int ind, char bff[], int flags, int width, int precision,
 	int length, char padd, char extra_c);
 int write_p(char buffer[], int ind, int length,
 	int width, int flags, char padd, char extra_c, int padd_start);
-int write_un(int is_negative, int ind,char buffer[],
+int write_un(int is_negative, int ind, char buffer[],
 		int flags, int width, int precision, int size);
 
 int printable(char);
